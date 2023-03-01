@@ -1,5 +1,5 @@
-import { getBoundingClientRect } from "./../utils/dom";
-import { mapPosition } from "./../utils/math";
+import { getBoundingClientRect } from "./dom";
+import { mapPosition } from "./math";
 
 export default class {
   constructor({ element }) {

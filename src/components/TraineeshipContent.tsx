@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { mapPosition } from "../utils/math";
+import useUpdateHorizontal from "./../hooks/useUpdateHorizontal";
 
 interface HighlightInterface {
   top: number | undefined;
@@ -14,6 +15,7 @@ function TraineeshipContent() {
   const outerContainerRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const innerContainerRef = useRef<HTMLDivElement | null>(null);
+  const parallaxContainerRef = useRef<HTMLDivElement | null>(null);
 
   const [highlight, setHighlight] = useState<HighlightInterface | null>(null);
 
@@ -31,45 +33,47 @@ function TraineeshipContent() {
     });
   }, [outerContainerRef]);
 
-  function horizontalScroll() {
-    const scrollPos =
-      outerContainerRef.current?.parentElement?.parentElement?.getBoundingClientRect()
-        .top;
+  // function horizontalScroll() {
+  //   const scrollPos =
+  //     outerContainerRef.current?.parentElement?.parentElement?.getBoundingClientRect()
+  //       .top;
 
-    if (!highlight) return;
+  //   if (!highlight) return;
 
-    if (scrollPos == undefined) return;
+  //   if (scrollPos == undefined) return;
 
-    //Horizontal panel animations settings
-    const highlightX = mapPosition(
-      -scrollPos,
-      highlight.top,
-      highlight.bottom! - window.innerHeight,
-      0,
-      -82
-    );
-    const highlightY = mapPosition(
-      -scrollPos,
-      highlight.top,
-      highlight.bottom,
-      0,
-      highlight.height
-    );
+  //   //Horizontal panel animations settings
+  //   const highlightX = mapPosition(
+  //     -scrollPos,
+  //     highlight.top,
+  //     highlight.bottom! - window.innerHeight,
+  //     0,
+  //     -82
+  //   );
+  //   const highlightY = mapPosition(
+  //     -scrollPos,
+  //     highlight.top,
+  //     highlight.bottom,
+  //     0,
+  //     highlight.height
+  //   );
 
-    if (innerContainerRef.current && containerRef.current) {
-      containerRef.current.style.transform = `translateY(${highlightY}px)`;
-      innerContainerRef.current.style.transform = `translateX(${highlightX}%)`;
-    }
+  //   if (innerContainerRef.current && containerRef.current) {
+  //     containerRef.current.style.transform = `translateY(${highlightY}px)`;
+  //     innerContainerRef.current.style.transform = `translateX(${highlightX}%)`;
+  //   }
 
-    window.requestAnimationFrame(horizontalScroll);
-  }
+  //   window.requestAnimationFrame(horizontalScroll);
+  // }
 
   useEffect(() => {
-    horizontalScroll();
-
-    return () => {
-      window.requestAnimationFrame(horizontalScroll);
-    };
+    useUpdateHorizontal(
+      parallaxContainerRef.current,
+      outerContainerRef.current,
+      containerRef.current,
+      innerContainerRef.current,
+      highlight
+    );
   }, [highlight]);
 
   return (
@@ -96,7 +100,10 @@ function TraineeshipContent() {
       </div>
       <div className="date__container">
         <div className="date__day">Sep 02 – Oct 31</div>
-        <h1 className="date__year">2022</h1>
+        <div className="date__year-container">
+          <span className="date__year">20</span>
+          <span className="date__year">22</span>
+        </div>
       </div>
       <div className="workshop__container">
         <h2 className="section__title">Workshops</h2>
@@ -115,7 +122,10 @@ function TraineeshipContent() {
       </div>
       <div className="date__container">
         <p className="date__day">Nov 01 – Dec 31</p>
-        <h1 className="date__year">2022</h1>
+        <div className="date__year-container">
+          <span className="date__year">20</span>
+          <span className="date__year">22</span>
+        </div>
       </div>
       <div className="masterclass__container">
         <h2 className="section__title">Masterclasses</h2>
@@ -137,6 +147,56 @@ function TraineeshipContent() {
         <button className="masterclass__link">Noah</button>
         <button className="masterclass__link">Nataliia</button>
       </div>
+      <section className="parallax__section" ref={parallaxContainerRef}>
+        <div
+          className="parallax__image-container"
+          data-animation="translate"
+          data-animation-speed="4.5"
+        >
+          <figure className="parallax__image-inner-container">
+            <img
+              className="parallax__image"
+              src="https://garoaskincare.com/home/seasons-1.webp"
+            />
+          </figure>
+        </div>
+        <div
+          className="parallax__image-container"
+          data-animation="translate"
+          data-animation-speed="-2.5"
+        >
+          <figure className="parallax__image-inner-container">
+            <img
+              className="parallax__image"
+              src="https://garoaskincare.com/home/seasons-2.webp"
+            />
+          </figure>
+        </div>
+        <div
+          className="parallax__image-container"
+          data-animation="translate"
+          data-animation-speed="3"
+        >
+          <figure className="parallax__image-inner-container">
+            <img
+              className="parallax__image"
+              src="https://garoaskincare.com/home/seasons-3.webp"
+            />
+          </figure>
+        </div>
+        <div
+          className="parallax__image-container"
+          data-animation="translate"
+          data-animation-speed="-5"
+        >
+          <figure className="parallax__image-inner-container">
+            <img
+              className="parallax__image"
+              src="https://garoaskincare.com/home/seasons-4.webp"
+            />
+          </figure>
+        </div>
+      </section>
     </>
   );
 }

@@ -4,18 +4,6 @@
   height: 86rem;
   position: relative;
   width: 100vw;
-
-  &:after {
-    background: $color-white;
-    border-radius: 0 0 1rem 1rem;
-    content: "";
-    height: calc(1rem + 1px);
-    margin-top: -1px;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    z-index: 1;
-  }
 }
 
 .parallax__image-container {
@@ -60,22 +48,6 @@
 }
 
 .parallax__image {
-  @extend %cover;
-
-  object-fit: cover;
-}
-
-// =========== Video ============
-
-.video__container {
-  border-radius: 0 0 1rem 1rem;
-  height: var(--100vh);
-  overflow: hidden;
-  position: relative;
-  width: 100vw;
-}
-
-.video__media {
   @extend %cover;
 
   object-fit: cover;
@@ -133,6 +105,8 @@
   object-fit: cover;
 }
 
+// =========== Program Links ============
+
 .masterclass__container,
 .workshop__container {
   width: 100vw;
@@ -161,25 +135,32 @@
 }
 
 .date__container {
-  height: 150vh;
+  height: 200vh;
   padding: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // background-color: rgb(187, 171, 174);
+  pointer-events: none;
 
   .date__day {
-    color: white;
+    color: black;
     font-size: 10rem;
     text-align: center;
     text-transform: uppercase;
     z-index: 1;
   }
 
-  .date__year {
-    margin-top: -5rem;
+  .date__year-container {
     position: absolute;
+  }
+
+  .date__year {
+    display: block;
+    font-size: 80rem;
+    font-weight: 600;
+    margin-top: -5rem;
     color: orangered;
+    line-height: 0.7;
   }
 }
