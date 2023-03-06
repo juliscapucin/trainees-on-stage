@@ -1,18 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import HorizontalScroll from "./HorizontalScroll";
+import Parallax from "./Parallax";
 import VerticalScroll from "./VerticalScroll";
 
 function TraineeshipContent() {
-  const parallaxContainerRef = useRef<HTMLDivElement | null>(null);
-
   return (
     <>
       <div className="text">
         Are you ready to kickstart your <b>frontend engineering</b> career with
         a <b>traineeship</b>?
       </div>
-      <HorizontalScroll />
+      <HorizontalScroll text="We focus on creating the best experiences in the world" />
       <div className="date__container">
         <VerticalScroll />
         <div className="date__year-container">
@@ -35,7 +34,8 @@ function TraineeshipContent() {
         <button className="workshop__link">React</button>
         <button className="workshop__link">Scrum</button>
       </div>
-      <div className="date__container" ref={parallaxContainerRef}>
+      <Parallax />
+      <div className="date__container">
         <VerticalScroll />
         <div className="date__year-container">
           <span className="date__year">20</span>
@@ -62,58 +62,8 @@ function TraineeshipContent() {
         <button className="masterclass__link">Noah</button>
         <button className="masterclass__link">Nataliia</button>
       </div>
-      <HorizontalScroll />
-      <section className="parallax__section">
-        <div
-          className="parallax__image-container"
-          data-animation="translate"
-          data-animation-speed="-1"
-        >
-          <figure className="parallax__image-inner-container">
-            <img
-              className="parallax__image"
-              src="https://garoaskincare.com/home/seasons-1.webp"
-            />
-          </figure>
-        </div>
-        <div
-          className="parallax__image-container"
-          data-animation="translate"
-          data-animation-speed="-2"
-        >
-          <figure className="parallax__image-inner-container">
-            <img
-              className="parallax__image"
-              src="https://garoaskincare.com/home/seasons-2.webp"
-            />
-          </figure>
-        </div>
-        <div
-          className="parallax__image-container"
-          data-animation="translate"
-          data-animation-speed="-3"
-        >
-          <figure className="parallax__image-inner-container">
-            <img
-              className="parallax__image"
-              src="https://garoaskincare.com/home/seasons-3.webp"
-            />
-          </figure>
-        </div>
-        <div
-          className="parallax__image-container"
-          data-animation="translate"
-          data-animation-speed="0"
-        >
-          <figure className="parallax__image-inner-container">
-            <img
-              className="parallax__image"
-              src="https://garoaskincare.com/home/seasons-4.webp"
-            />
-          </figure>
-        </div>
-      </section>
-      <HorizontalScroll />
+      <HorizontalScroll text="Thank you all! See you around in 2023" />
+      <Parallax />
     </>
   );
 }

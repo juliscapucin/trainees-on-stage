@@ -16,7 +16,6 @@ export default class {
     this.height = window.innerHeight;
   }
 
-  //this gets called in the demo-2.js file
   update(scrollPos) {
     const amount = 100 * this.speed; //speed amount
     const offset = this.bounds.top + this.bounds.height / 2; //middle of the element is the anchor for the animation

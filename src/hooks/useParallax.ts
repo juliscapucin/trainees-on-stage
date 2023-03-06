@@ -1,16 +1,11 @@
 import Translate from "../utils/Translate";
 
-export default function useParallax(mainContainerRef: HTMLElement | null) {
+export default function useParallax(parallaxContainer: HTMLElement | null) {
   //Select all needed elements
   //Parallax
-  const parallaxItems = mainContainerRef?.querySelectorAll(
+  const parallaxItems = parallaxContainer?.querySelectorAll(
     '[data-animation="translate"]'
   );
-
-  //Video
-  // const videoContainer = mainContainerRef?.querySelector(".video__container");
-  // const videoMedia: HTMLDivElement | null | undefined =
-  //   mainContainerRef?.querySelector(".video__media");
 
   //==============
   //   Resize
@@ -29,20 +24,15 @@ export default function useParallax(mainContainerRef: HTMLElement | null) {
     // translates.forEach((translate) => {
     //   translate.onResize();
     // });
-
-    // if (videoMedia) videoMedia.style.transform = "";
-
-    //gets position of the video element
-    // const videoContainerPos = videoContainer?.getBoundingClientRect();
   }
 
   //==============
   //    Update
   //==============
   function update() {
-    const scrollPos =
-      mainContainerRef?.parentElement?.parentElement?.getBoundingClientRect()
-        .top;
+    const scrollPos = parallaxContainer?.getBoundingClientRect().top;
+
+    console.log(scrollPos);
 
     if (scrollPos == undefined) return;
 
