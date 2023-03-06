@@ -50,9 +50,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    // if scrollHandler already exists, don't run it again
-    // if (scrollHandler) return;
-
     scrollHandler = new Scrolling({
       element: elementRef.current,
       wrapper: wrapperRef.current,
@@ -71,9 +68,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div>
-        <Header />
+        {/* <Header /> */}
         <div className="demo" ref={elementRef}>
-          <div className="demo__wrapper" ref={wrapperRef}>
+          <div className="scroll__wrapper" ref={wrapperRef}>
             {children}
           </div>
         </div>

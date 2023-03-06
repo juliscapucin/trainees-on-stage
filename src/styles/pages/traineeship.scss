@@ -134,8 +134,17 @@
   }
 }
 
+.vertical-scroll__outer-container {
+  width: 100vw;
+  height: 250vh;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .date__container {
-  height: 200vh;
+  height: 250vh;
   padding: 5rem;
   display: flex;
   flex-direction: column;
@@ -148,7 +157,7 @@
     font-size: 10rem;
     text-align: center;
     text-transform: uppercase;
-    z-index: 1;
+    z-index: 100;
   }
 
   .date__year-container {

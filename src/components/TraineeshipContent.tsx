@@ -1,80 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { mapPosition } from "../utils/math";
-import useUpdateHorizontal from "./../hooks/useUpdateHorizontal";
+import React, { useRef } from "react";
 
-interface HighlightInterface {
-  top: number | undefined;
-  left: number | undefined;
-  right: number | undefined;
-  bottom: number | undefined;
-  width: number | undefined;
-  height: number | undefined;
-}
+import HorizontalScroll from "./HorizontalScroll";
+import VerticalScroll from "./VerticalScroll";
 
 function TraineeshipContent() {
-  const outerContainerRef = useRef<HTMLDivElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const innerContainerRef = useRef<HTMLDivElement | null>(null);
   const parallaxContainerRef = useRef<HTMLDivElement | null>(null);
-
-  const [highlight, setHighlight] = useState<HighlightInterface | null>(null);
-
-  useEffect(() => {
-    const container = outerContainerRef.current?.getBoundingClientRect();
-    // resize();
-
-    setHighlight({
-      top: container?.top,
-      right: container?.right,
-      bottom: container?.bottom,
-      left: container?.left,
-      width: container?.width,
-      height: container?.height,
-    });
-  }, [outerContainerRef]);
-
-  // function horizontalScroll() {
-  //   const scrollPos =
-  //     outerContainerRef.current?.parentElement?.parentElement?.getBoundingClientRect()
-  //       .top;
-
-  //   if (!highlight) return;
-
-  //   if (scrollPos == undefined) return;
-
-  //   //Horizontal panel animations settings
-  //   const highlightX = mapPosition(
-  //     -scrollPos,
-  //     highlight.top,
-  //     highlight.bottom! - window.innerHeight,
-  //     0,
-  //     -82
-  //   );
-  //   const highlightY = mapPosition(
-  //     -scrollPos,
-  //     highlight.top,
-  //     highlight.bottom,
-  //     0,
-  //     highlight.height
-  //   );
-
-  //   if (innerContainerRef.current && containerRef.current) {
-  //     containerRef.current.style.transform = `translateY(${highlightY}px)`;
-  //     innerContainerRef.current.style.transform = `translateX(${highlightX}%)`;
-  //   }
-
-  //   window.requestAnimationFrame(horizontalScroll);
-  // }
-
-  useEffect(() => {
-    useUpdateHorizontal(
-      parallaxContainerRef.current,
-      outerContainerRef.current,
-      containerRef.current,
-      innerContainerRef.current,
-      highlight
-    );
-  }, [highlight]);
 
   return (
     <>
@@ -82,24 +12,9 @@ function TraineeshipContent() {
         Are you ready to kickstart your <b>frontend engineering</b> career with
         a <b>traineeship</b>?
       </div>
-      <div
-        className="horizontal-scroll__outer-container"
-        ref={outerContainerRef}
-      >
-        <div className="horizontal-scroll__container" ref={containerRef}>
-          <div
-            className="horizontal-scroll__inner-container"
-            ref={innerContainerRef}
-          >
-            <h4 className="horizontal-scroll__text">
-              We focus on creating the<strong> best experiences </strong>in the
-              world
-            </h4>
-          </div>
-        </div>
-      </div>
+      <HorizontalScroll />
       <div className="date__container">
-        <div className="date__day">Sep 02 – Oct 31</div>
+        <VerticalScroll />
         <div className="date__year-container">
           <span className="date__year">20</span>
           <span className="date__year">22</span>
@@ -120,8 +35,8 @@ function TraineeshipContent() {
         <button className="workshop__link">React</button>
         <button className="workshop__link">Scrum</button>
       </div>
-      <div className="date__container">
-        <p className="date__day">Nov 01 – Dec 31</p>
+      <div className="date__container" ref={parallaxContainerRef}>
+        <VerticalScroll />
         <div className="date__year-container">
           <span className="date__year">20</span>
           <span className="date__year">22</span>
@@ -147,11 +62,12 @@ function TraineeshipContent() {
         <button className="masterclass__link">Noah</button>
         <button className="masterclass__link">Nataliia</button>
       </div>
-      <section className="parallax__section" ref={parallaxContainerRef}>
+      <HorizontalScroll />
+      <section className="parallax__section">
         <div
           className="parallax__image-container"
           data-animation="translate"
-          data-animation-speed="4.5"
+          data-animation-speed="-1"
         >
           <figure className="parallax__image-inner-container">
             <img
@@ -163,7 +79,7 @@ function TraineeshipContent() {
         <div
           className="parallax__image-container"
           data-animation="translate"
-          data-animation-speed="-2.5"
+          data-animation-speed="-2"
         >
           <figure className="parallax__image-inner-container">
             <img
@@ -175,7 +91,7 @@ function TraineeshipContent() {
         <div
           className="parallax__image-container"
           data-animation="translate"
-          data-animation-speed="3"
+          data-animation-speed="-3"
         >
           <figure className="parallax__image-inner-container">
             <img
@@ -187,7 +103,7 @@ function TraineeshipContent() {
         <div
           className="parallax__image-container"
           data-animation="translate"
-          data-animation-speed="-5"
+          data-animation-speed="0"
         >
           <figure className="parallax__image-inner-container">
             <img
@@ -197,6 +113,7 @@ function TraineeshipContent() {
           </figure>
         </div>
       </section>
+      <HorizontalScroll />
     </>
   );
 }

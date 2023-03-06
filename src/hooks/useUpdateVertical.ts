@@ -4,35 +4,13 @@ import { mapPosition } from "./../utils/math";
 
 import { HighlightInterface } from "./../../typings";
 
-export default function useUpdateHorizontal(
-  // parallaxContainerRef: HTMLElement | null,
+export default function useUpdateVertical(
   outerContainerRef: HTMLElement | null,
   containerRef: HTMLElement | null,
   innerContainerRef: HTMLElement | null,
   highlight: HighlightInterface | null
 ) {
   const scrollWrapper = document.querySelector(".scroll__wrapper");
-
-  //Select all needed elements
-  //Parallax
-  // const parallaxItems = parallaxContainerRef?.querySelectorAll(
-  //   '[data-animation="translate"]'
-  // );
-  // let translates: Translate[];
-
-  // if (parallaxItems) {
-  //   translates = Array.from(parallaxItems).map((element) => {
-  //     return new Translate({
-  //       element,
-  //     });
-  //   });
-  // }
-
-  //Video
-  // const videoContainer =
-  //   parallaxContainerRef?.querySelector(".video__container");
-  // const videoMedia: HTMLDivElement | null | undefined =
-  //   parallaxContainerRef?.querySelector(".video__media");
 
   //==============
   //   Resize
@@ -47,15 +25,6 @@ export default function useUpdateHorizontal(
     const width2 = window.innerWidth;
 
     // scrolling.onResize();
-
-    // translates.forEach((translate) => {
-    //   translate.onResize();
-    // });
-
-    // if (videoMedia) videoMedia.style.transform = "";
-
-    //gets position of the video element
-    // const videoContainerPos = videoContainer?.getBoundingClientRect();
 
     // const width = this.elements.highlightWrapper.clientWidth + this.width;
 
@@ -75,19 +44,6 @@ export default function useUpdateHorizontal(
 
     if (scrollPos == undefined) return;
 
-    //add animation to parallax images
-    // translates.forEach((translate) => {
-    //   translate.update(scrollPos);
-    // });
-
-    //Horizontal panel animations settings
-    const highlightX = mapPosition(
-      -scrollPos,
-      highlight.top,
-      highlight.bottom! - window.innerHeight,
-      0,
-      -80
-    );
     const highlightY = mapPosition(
       -scrollPos,
       highlight.top,
@@ -99,7 +55,6 @@ export default function useUpdateHorizontal(
     //apply animation to Horizontal panel styles
     if (innerContainerRef && containerRef) {
       containerRef.style.transform = `translateY(${highlightY}px)`;
-      innerContainerRef.style.transform = `translateX(${highlightX}%)`;
     }
 
     window.requestAnimationFrame(update);
