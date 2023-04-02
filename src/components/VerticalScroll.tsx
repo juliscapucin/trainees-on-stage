@@ -18,7 +18,7 @@ function VerticalScroll() {
 
   const [highlight, setHighlight] = useState<HighlightInterface | null>(null);
 
-  const verticalPosition = useContext(VerticalPositionContext);
+  const scrollPosition = useContext(VerticalPositionContext);
 
   useEffect(() => {
     const container =
@@ -41,9 +41,9 @@ function VerticalScroll() {
       verticalContainerRef.current,
       verticalInnerContainerRef.current,
       highlight,
-      verticalPosition
+      scrollPosition
     );
-  }, [highlight, verticalPosition]);
+  }, [highlight, scrollPosition]);
 
   return (
     <div

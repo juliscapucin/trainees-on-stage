@@ -40,7 +40,7 @@ const VerticalPositionProvider = ({
   //   };
   // }, []);
 
-  const [verticalPosition, setVerticalPosition] = useState<number>(0);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
   const elementRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   let currentScroll = 0;
@@ -61,7 +61,7 @@ const VerticalPositionProvider = ({
 
     if (elementRef.current) {
       const position = elementRef.current.getBoundingClientRect().top;
-      setVerticalPosition(position);
+      setScrollPosition(position);
     }
 
     window.requestAnimationFrame(update);
@@ -84,7 +84,7 @@ const VerticalPositionProvider = ({
   }, []);
 
   return (
-    <VerticalPositionContext.Provider value={verticalPosition}>
+    <VerticalPositionContext.Provider value={scrollPosition}>
       <div className="demo" ref={elementRef}>
         <div className="scroll__wrapper" ref={wrapperRef}>
           {children}
