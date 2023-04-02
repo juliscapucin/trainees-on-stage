@@ -32,8 +32,6 @@ export default function useParallax(parallaxContainer: HTMLElement | null) {
   function update() {
     const scrollPos = parallaxContainer?.getBoundingClientRect().top;
 
-    console.log(scrollPos);
-
     if (scrollPos == undefined) return;
 
     //Parallax animations

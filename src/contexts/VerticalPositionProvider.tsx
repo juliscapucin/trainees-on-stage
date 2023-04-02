@@ -59,6 +59,11 @@ const VerticalPositionProvider = ({
       currentScroll = scrollHandler!.current;
     }
 
+    if (elementRef.current) {
+      const position = elementRef.current.getBoundingClientRect().top;
+      setVerticalPosition(position);
+    }
+
     window.requestAnimationFrame(update);
   }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import useUpdateVertical from "../hooks/useUpdateVertical";
+import VerticalPositionContext from "./../contexts/VerticalPositionContext";
 
 interface HighlightInterface {
   top: number | undefined;
@@ -16,6 +17,8 @@ function VerticalScroll() {
   const verticalInnerContainerRef = useRef<HTMLDivElement | null>(null);
 
   const [highlight, setHighlight] = useState<HighlightInterface | null>(null);
+
+  const verticalPosition = useContext(VerticalPositionContext);
 
   useEffect(() => {
     const container =
@@ -37,9 +40,10 @@ function VerticalScroll() {
       verticalOuterContainerRef.current,
       verticalContainerRef.current,
       verticalInnerContainerRef.current,
-      highlight
+      highlight,
+      verticalPosition
     );
-  }, [highlight]);
+  }, [highlight, verticalPosition]);
 
   return (
     <div

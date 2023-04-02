@@ -8,7 +8,8 @@ export default function useUpdateVertical(
   outerContainerRef: HTMLElement | null,
   containerRef: HTMLElement | null,
   innerContainerRef: HTMLElement | null,
-  highlight: HighlightInterface | null
+  highlight: HighlightInterface | null,
+  verticalPosition: number
 ) {
   const scrollWrapper = document.querySelector(".scroll__wrapper");
 
@@ -43,6 +44,8 @@ export default function useUpdateVertical(
     if (!highlight) return;
 
     if (scrollPos == undefined) return;
+
+    console.log(verticalPosition);
 
     const highlightY = mapPosition(
       -scrollPos,
