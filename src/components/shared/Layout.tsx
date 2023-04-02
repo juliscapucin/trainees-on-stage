@@ -27,54 +27,48 @@ interface ScrollingType {
 //============================//
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const elementRef = useRef<HTMLDivElement | null>(null);
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  // const elementRef = useRef<HTMLDivElement | null>(null);
+  // const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  let currentScroll = 0;
+  // let currentScroll = 0;
 
-  let scrollHandler: ScrollingType;
+  // let scrollHandler: ScrollingType;
 
-  function onResize() {
-    if (scrollHandler) scrollHandler.onResize();
+  // function onResize() {
+  //   if (scrollHandler) scrollHandler.onResize();
 
-    document.body.style.setProperty("--100vh", `${window.innerHeight}px`);
-  }
+  //   document.body.style.setProperty("--100vh", `${window.innerHeight}px`);
+  // }
 
-  function update() {
-    if (scrollHandler) {
-      scrollHandler!.loop();
-      currentScroll = scrollHandler!.current;
-    }
+  // function update() {
+  //   if (scrollHandler) {
+  //     scrollHandler!.loop();
+  //     currentScroll = scrollHandler!.current;
+  //   }
 
-    window.requestAnimationFrame(update);
-  }
+  //   window.requestAnimationFrame(update);
+  // }
 
-  useEffect(() => {
-    scrollHandler = new Scrolling({
-      element: elementRef.current,
-      wrapper: wrapperRef.current,
-      trigger: window,
-    });
+  // useEffect(() => {
+  //   scrollHandler = new Scrolling({
+  //     element: elementRef.current,
+  //     wrapper: wrapperRef.current,
+  //     trigger: window,
+  //   });
 
-    onResize();
-    update();
-    window.addEventListener("resize", onResize);
+  //   onResize();
+  //   update();
+  //   window.addEventListener("resize", onResize);
 
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", onResize);
+  //   };
+  // }, []);
 
   return (
     <>
-      <div>
-        {/* <Header /> */}
-        <div className="demo" ref={elementRef}>
-          <div className="scroll__wrapper" ref={wrapperRef}>
-            {children}
-          </div>
-        </div>
-      </div>
+      {/* <Header /> */}
+      {children}
     </>
   );
 }

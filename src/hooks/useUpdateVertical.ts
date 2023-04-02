@@ -57,7 +57,7 @@ export default function useUpdateVertical(
       containerRef.style.transform = `translateY(${highlightY}px)`;
     }
 
-    window.requestAnimationFrame(update);
+    // window.requestAnimationFrame(update);
   }
 
   onResize();
